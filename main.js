@@ -1,18 +1,24 @@
-var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
-socket.onopen = function(event){alert('Ok')}
+//var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
+(function(){
 
-var ping = {
-    $type: "login",
-    username: 'user12',
-    password: 'password1234'
-}
+    
+app.controller('login', ['$scope', function($scope){
 
 
+    $scope.aouthor = function(){
+        var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
+        socket.send(JSON.stringify($scope.credentials))
+    }
+    
+    $scope.credentials = {
+        $type: "login",
+        username: '',
+        password: ''
+    }
+    
 
-function kek () {
-    socket.send(JSON.stringify(ping))
-}
-socket.onmessage = function (event) {
-  console.log(event.data);
-}
-////////////////////////////////////////
+    
+    
+}])
+    
+})();

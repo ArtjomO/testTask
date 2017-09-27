@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 </head>
-<body>
-    <input type="button" value="Send" id="button" onclick="kek()">
+<body ng-app="lobby">
+    <header ng-controller="login">
+        <form>
+            <label>Login</label>
+            <input type="text" value="{{ credentials.login }}">
+            <label>Password</label>
+            <input type="password">
+            <input type="submit" ng-submit>
+        </form>
+    </header>
     
     
-    
+    <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    
     
 </body>
 </html>
