@@ -39,6 +39,8 @@ var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws
         
     }
     
+    app.directive
+    
     
     
     

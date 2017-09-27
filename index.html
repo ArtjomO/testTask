@@ -7,15 +7,7 @@
 </head>
 <body ng-app="lobby">
     <header ng-controller="login">
-        <form ng-hide="resp.user_type === 'admin'">
-            <label>Login</label>
-            <input type="text" ng-model="username">
-            <label>Password</label>
-            <input type="password" ng-model="password">
-            <input type="button" value="Login" ng-click="aouthor()">
-            
-        </form>
-        {{ resp.user_type }}
+         <login></login>
     </header>
     
     
