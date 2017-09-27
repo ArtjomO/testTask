@@ -9,10 +9,11 @@
     <header ng-controller="login">
         <form>
             <label>Login</label>
-            <input type="text" value="{{ credentials.login }}">
+            <input type="text" ng-model="username">
             <label>Password</label>
-            <input type="password" value="{{ credentials.password }}">
+            <input type="password" ng-model="password">
             <input type="submit" ng-click="aouthor()">
+            
         </form>
     </header>
     
