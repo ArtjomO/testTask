@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/head.css">
+    <link rel="stylesheet" href="css/section.css">
 </head>
 <body ng-app="lobby">
+   
     <header ng-controller="loginCtrl">
         <login-dir></login-dir>
     </header>
     
-    <section>
-        <lobby-dir ng-contloller="lobbyCtrl"></lobby-dir>
+    <section ng-contloller="lobbyCtrl">
+        <lobby-dir></lobby-dir>
     </section>
     
     
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="controllers/loginCtrl.js"></script>
-    <script type="text/javascript" src="controllers/lobbyCtrl.js"></script>
-    
-    
+    <script type="text/javascript" src="Controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
 </body>
 </html>
