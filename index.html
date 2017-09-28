@@ -6,13 +6,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
 </head>
 <body ng-app="lobby">
-    <header ng-controller="login">
-        <login></login>
+    <header ng-controller="loginCtrl">
+        <login-dir></login-dir>
     </header>
+    
+    <section>
+        <lobby-dir ng-contloller="lobbyCtrl"></lobby-dir>
+    </section>
     
     
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="/Controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="controllers/lobbyCtrl.js"></script>
     
     
 </body>

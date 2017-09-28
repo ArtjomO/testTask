@@ -2,7 +2,7 @@
 (function(){
 
     
-app.controller('login', ['$scope', function($scope){
+app.controller('loginCtrl', ['$scope', function($scope){
  
     $scope.$type = 'login';
     $scope.username = 'user1234';
@@ -34,19 +34,18 @@ var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws
             if (resp.$type === 'login_failed') alert('Incorrect login or password')  ;
             $scope.resp = resp;
             console.log('parsed response: ' + $scope.resp)
-        };
-        
-        
-    }
-    
-    app.directive
-    
-    
-    
-    
+        };    
+    };
 
     
-    
-}])
+}]);
+
+
+app.directive('loginDir', function(){
+    return {
+        restrict: 'E',
+        templateUrl: '../directives/login-dir.html'
+    }
+});
     
 })();
