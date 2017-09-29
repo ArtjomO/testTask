@@ -1,11 +1,12 @@
 (function(){
 
-app.controller('lobbyCtrl', ['$scope', function(){
+app.controller('lobbyCtrl', ['$scope', function($scope){
     
     $scope.tables = [];
     
-    function crateTable(type, name, participans) {
-        var tabel = {
+    $scope.createTable = function(type, name, participans) {
+        console.log('Function crate table works..')
+        var table = {
             $type: type,
             after_id: 1,
             table: {
@@ -14,8 +15,18 @@ app.controller('lobbyCtrl', ['$scope', function(){
             }
         };
         
+        var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
         
-    }
+        socket.onopen = function (){
+            socket.send(JSON.stringify(table));
+        };
+        
+        socket.onmessage = function (event) {
+            alert(event.data)
+        }
+        
+        
+    };
     
 }]);   
     

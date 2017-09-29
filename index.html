@@ -14,7 +14,10 @@
         <login-dir></login-dir>
     </header>
     
-    <section ng-contloller="lobbyCtrl">
+    <section ng-controller="lobbyCtrl">
+        <div class="admin">
+            <button ng-click="createTable('add_table', 'table', 4)">Create T</button>
+        </div>
         <lobby-dir></lobby-dir>
     </section>
     
