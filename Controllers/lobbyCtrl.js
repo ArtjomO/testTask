@@ -1,6 +1,6 @@
 (function(){
 
-app.controller('lobbyCtrl', ['$scope', function(){
+app.controller('lobbyCtrl', ['$smth', function(){
         
     
     

@@ -41,7 +41,7 @@ var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws
 }]);
 
 
-app.directive('lobbyDir', function(){
+app.directive('loginDir', function(){
    return {
        restrict: 'E',
        templateUrl: '../directives/login-dir.html'
