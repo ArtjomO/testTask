@@ -13,13 +13,13 @@ app.controller('loginCtrl', ['$scope', function($scope){
         var credentials = {
             $type: 'login',
             username: $scope.username,
-            password: $scope.password
+            password: $scope.password,
         };
         
         
         
         
-var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
+        var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
         
 // necessary to wait untill socket will be opened
         socket.onopen = function(){
