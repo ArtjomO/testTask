@@ -2,7 +2,7 @@
 (function(){
 
     
-app.controller('loginCtrl', ['$scope', function($scope){
+app.controller('loginCtrl', function($scope, ws){
  
     $scope.$type = 'login';
     $scope.username = 'user1234';
@@ -19,16 +19,18 @@ app.controller('loginCtrl', ['$scope', function($scope){
         
         
         
-        var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
+//        var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
+//        
+//// necessary to wait untill socket will be opened
+//        socket.onopen = function(){
+//            console.log('WebSocket onpened!')
+//            socket.send(JSON.stringify(credentials));
+//            console.log('credentials are sent: '+credentials.username)
+//        }
         
-// necessary to wait untill socket will be opened
-        socket.onopen = function(){
-            console.log('WebSocket onpened!')
-            socket.send(JSON.stringify(credentials));
-            console.log('credentials are sent: '+credentials.username)
-        }
+        ws.send(JSON.stringify(credentials))
         
-        socket.onmessage = function(event){
+        ws.onmessage = function(event){
             console.log('response is received: '+ event.data);
             var resp = JSON.parse(event.data);
             if (resp.$type === 'login_failed') alert('Incorrect login or password')  ;
@@ -38,7 +40,7 @@ app.controller('loginCtrl', ['$scope', function($scope){
     };
 
     
-}]);
+});
 
 
 app.directive('loginDir', function(){
