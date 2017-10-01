@@ -1,16 +1,33 @@
-app.service('ws', function(){
-    var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');  
-    
-    this.send = function (msg){
-        socket.send(msg)
-    }
-    //problem: service cant hadle responses from server
-    socket.onmessage = function(event) {
-        console.log('response is received: '+ event.data);
-            var resp = JSON.parse(event.data);
-            if (resp.$type === 'login_failed') alert('Incorrect login or password')  ;
-            $scope.resp = resp;
-            console.log('parsed response: ' + $scope.resp)
-    }
-
+app.factory('ws', function(){
+    var stack = [];
+    var onmessageDefer;
+    var socket = {
+        ws: new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws'),
+        send: function(data) {
+            data = JSON.stringify(data);
+            if (socket.ws.readyState == 1) {
+                socket.ws.send(data);
+            } else {
+                stack.push(data);
+            }
+        },
+        onmessage: function(callback) {
+            if (socket.ws.readyState == 1) {
+                socket.ws.onmessage = callback;
+            } else {
+                onmessageDefer = callback;
+            }
+        }
+    };
+    socket.ws.onopen = function(event) {
+        for (i in stack) {
+            socket.ws.send(stack[i]);
+        }
+        stack = [];
+        if (onmessageDefer) {
+            socket.ws.onmessage = onmessageDefer;
+            onmessageDefer = null;
+        }
+    };
+    return socket;
 });

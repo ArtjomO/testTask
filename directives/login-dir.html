@@ -1,9 +1,11 @@
 <div class="login-wrap">
-   <form ng-hide="resp.user_type === 'admin'">
+   <form ng-if="isAdmin === 'user'">
         <label>Login</label>
         <input type="text" ng-model="username">
         <label>Password</label>
         <input type="password" ng-model="password">
         <input type="button" value="Login" ng-click="aouthor()">
     </form>
+    <p ng-show="isAdmin === 'admin'">Logged as ADMIN..</p>
+    
 </div>

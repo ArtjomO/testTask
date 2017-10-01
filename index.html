@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/head.css">
     <link rel="stylesheet" href="css/section.css">
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="Controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="Directives/login-dir.js"></script>
+    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
+    <script type="text/javascript" src="Directives/lobby-dir.js"></script>
+    <script type="text/javascript" src="Services/connection.js"></script>        
 </head>
 <body ng-app="lobby">
    
@@ -17,14 +23,11 @@
     <section ng-controller="lobbyCtrl">
         <div class="admin">
             <button ng-click="createTable('add_table', 'table', 4)">Create T</button>
+            <button ng-click="subscribe('subscribe_tables')">Subscribe</button>
+            <button ng-click="subscribe('unsubscribe_tables')">Unsubscribe</button>
         </div>
         <lobby-dir></lobby-dir>
     </section>
     
-    
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="Controllers/loginCtrl.js"></script>
-    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
-    <script type="text/javascript" src="Services/connection.js"></script>
 </body>
 </html>

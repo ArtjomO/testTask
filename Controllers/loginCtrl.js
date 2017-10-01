@@ -1,13 +1,11 @@
 //var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
-(function(){
-
-    
+(function(){ 
 app.controller('loginCtrl', function($scope, ws){
  
-    $scope.$type = 'login';
     $scope.username = 'user1234';
     $scope.password = 'password1234';
-    $scope.resp = 'kek'
+    $scope.isAdmin = 'user';
+    
     $scope.aouthor = function(){
         console.log('aouthorisation in process..')
         var credentials = {
@@ -16,38 +14,22 @@ app.controller('loginCtrl', function($scope, ws){
             password: $scope.password,
         };
         
-        
-        
-        
-//        var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
-//        
-//// necessary to wait untill socket will be opened
-//        socket.onopen = function(){
-//            console.log('WebSocket onpened!')
-//            socket.send(JSON.stringify(credentials));
-//            console.log('credentials are sent: '+credentials.username)
-//        }
-        
-        ws.send(JSON.stringify(credentials))
-        
-        ws.onmessage = function(event){
+        function succsessAouth() {
             console.log('response is received: '+ event.data);
             var resp = JSON.parse(event.data);
-            if (resp.$type === 'login_failed') alert('Incorrect login or password')  ;
-            $scope.resp = resp;
-            console.log('parsed response: ' + $scope.resp)
-        };    
+            switch(resp.$type){
+                case 'login_successful':
+                    $scope.isAdmin = 'admin';
+                    break;
+                case 'login_failed':
+                    alert('Incorrect login or password');
+                    break;
+            };
+            console.log($scope.showAdmin)
+        };
+        
+        ws.send(credentials);
+        ws.onmessage(succsessAouth);
     };
-
-    
-});
-
-
-app.directive('loginDir', function(){
-   return {
-       restrict: 'E',
-       templateUrl: '../directives/login-dir.html'
-   } 
-});
-    
+});  
 })();
