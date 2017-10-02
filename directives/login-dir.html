@@ -1,11 +1,10 @@
 <div class="login-wrap">
    <form ng-if="isAdmin === 'user'">
         <label>Login</label>
-        <input type="text" ng-model="username">
+        <input type="text" ng-model="credentials.username">
         <label>Password</label>
-        <input type="password" ng-model="password">
+        <input type="password" ng-model="credentials.password">
         <input type="button" value="Login" ng-click="aouthor()">
     </form>
-    <p ng-show="isAdmin === 'admin'">Logged as ADMIN..</p>
-    
+    <div ng-show="isAdmin === 'admin'">Logged as ADMIN..</div> 
 </div>

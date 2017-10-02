@@ -1,8 +1,10 @@
-app.factory('ws', function(cb){
+app.factory('ws', function(){
     var stack = [];
     var onmessageDefer;
     var socket = {
-        data: {},
+        respMsg: {
+            tables: []
+        },
         ws: new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws'),
         send: function(data) {
             data = JSON.stringify(data);
@@ -20,6 +22,7 @@ app.factory('ws', function(cb){
             }
         }
     };
+    
     socket.ws.onopen = function(event) {
         for (i in stack) {
             socket.ws.send(stack[i]);
@@ -31,12 +34,12 @@ app.factory('ws', function(cb){
         }
     };
     
-    
+///////////////////////////
     function handler() {
-        var data = JSON.parse(event.data);
-            console.log('handler works')
-            socket.data = data;
-            console.log('socket data is changed: '+ socket.data)
+        var respMsg = JSON.parse(event.data);
+        socket.respMsg = respMsg;
+        console.log('respMsg is updated: ' +respMsg.$type);
+
     };
     
     

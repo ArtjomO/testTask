@@ -3,10 +3,10 @@ section {
 }
 
 .table-section {
-    max-width: 1000px;
+    max-width: 1302px;
+    max-height: 519px;
     margin-left: auto;
     margin-right: auto;
-    height: 203px;
     border: 1px solid black;
     border-radius: 9px;
     overflow-y: auto;

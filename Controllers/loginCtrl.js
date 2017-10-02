@@ -2,34 +2,31 @@
 (function(){ 
 app.controller('loginCtrl', function($scope, ws){
  
-    $scope.username = 'user1234';
-    $scope.password = 'password1234';
+    $scope.credentials = {
+        $type: 'login',
+        username: 'user1234',
+        password: 'password1234'
+    };
+    
     $scope.isAdmin = 'user';
+
+//$watch is watcning if ws.response was updated and then updates isAdmin
+    $scope.$watch(function() {return ws.respMsg}, function(newVal, oldVal){
+        console.log('$whatch triggered in loginCtrl');
+        switch (newVal.$type) {
+            case 'login_successful':
+                $scope.isAdmin = newVal.user_type;
+                break;
+            case 'login_failed':
+                alert('Inccorrect Login or Password');
+                break;
+        };       
+    });
     
     $scope.aouthor = function(){
-        console.log('aouthorisation in process..')
-        var credentials = {
-            $type: 'login',
-            username: $scope.username,
-            password: $scope.password,
-        };
-        
-        function succsessAouth() {
-            console.log('response is received: '+ event.data);
-            var resp = JSON.parse(event.data);
-            switch(resp.$type){
-                case 'login_successful':
-                    $scope.isAdmin = 'admin';
-                    break;
-                case 'login_failed':
-                    alert('Incorrect login or password');
-                    break;
-            };
-            console.log($scope.showAdmin)
-        };
-        
-        ws.send(credentials);
-        ws.onmessage(succsessAouth);
+        ws.send($scope.credentials);
+        ws.onmessage();
     };
+    
 });  
 })();
