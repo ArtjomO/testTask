@@ -3,8 +3,10 @@ app.factory('ws', function(){
     var onmessageDefer;
     var socket = {
         respMsg: {
-            tables: []
+            tables: [],
+            $type: ''
         },
+        ret: function(){return this.respMsg},
         ws: new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws'),
         send: function(data) {
             data = JSON.stringify(data);
@@ -38,8 +40,7 @@ app.factory('ws', function(){
     function handler() {
         var respMsg = JSON.parse(event.data);
         socket.respMsg = respMsg;
-        console.log('respMsg is updated: ' +respMsg.$type);
-
+        console.log('respMsg is updated: ' + socket.respMsg.$type);
     };
     
     
