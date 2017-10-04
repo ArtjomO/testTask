@@ -6,19 +6,22 @@ app.controller('lobbyCtrl', function($scope, ws){
     
     $scope.tableList = [{name: 'test BJ', participants: 2, id:1}];
     
-    $scope.$watch(function(){return ws.respMsg}, function(newVal, oldVal){
-        console.log('$watch triggered in lobbyCtrl');
-        
-        switch (newVal.$type){
+    $scope.$on('response', function(event, data){
+        switch (data.$type){
             case 'table_list':
-                $scope.tableList = newVal.tables;
-                console.log($scope.tables);
-                console.log(newVal);
+                $scope.tableList = data.tables;
+                $scope.$digest()
                 break;
             case 'table_removed':
                 console.log('HURRRAAAAAAAAAAAAAAAAAY!!!!')
         }
-    }, true);
+    });
+    
+//    $scope.$watch(function(){return ws.respMsg}, function(newVal, oldVal){
+//        console.log('$watch triggered in lobbyCtrl');
+//        
+//        
+//    }, true);
     
     
     

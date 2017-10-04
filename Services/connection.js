@@ -1,4 +1,4 @@
-app.factory('ws', function(){
+app.factory('ws', function($rootScope){
     var stack = [];
     var onmessageDefer;
     var socket = {
@@ -39,8 +39,10 @@ app.factory('ws', function(){
 ///////////////////////////
     function handler() {
         var respMsg = JSON.parse(event.data);
-        socket.respMsg = respMsg;
-        console.log('respMsg is updated: ' + socket.respMsg.$type);
+//        socket.respMsg = respMsg;
+//        console.log('respMsg is updated: ' + socket.respMsg.$type);
+        $rootScope.$broadcast('response', respMsg);
+        
     };
     
     

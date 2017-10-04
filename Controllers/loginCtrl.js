@@ -9,18 +9,19 @@ app.controller('loginCtrl', function($scope, ws){
     };
     
     $scope.isAdmin = 'user';
-
-//$watch is watcning if ws.response was updated and then updates isAdmin
-    $scope.$watch(function() {return ws.respMsg}, function(newVal, oldVal){
-        console.log('$whatch triggered in loginCtrl');
-        switch (newVal.$type) {
+    
+    
+    $scope.$on('response', function(event, data){
+        console.log(data);
+        switch (data.$type) {
             case 'login_successful':
-                $scope.isAdmin = newVal.user_type;
+                $scope.isAdmin = data.user_type;
+                $scope.$digest();
                 break;
             case 'login_failed':
                 alert('Inccorrect Login or Password');
                 break;
-        };       
+        };   
     });
     
     $scope.aouthor = function(){
