@@ -1,12 +1,8 @@
+//WebSocket service which opens connection, can send messages from any $scope and handles responses
 app.factory('ws', function($rootScope){
     var stack = [];
     var onmessageDefer;
     var socket = {
-        respMsg: {
-            tables: [],
-            $type: ''
-        },
-        ret: function(){return this.respMsg},
         ws: new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws'),
         send: function(data) {
             data = JSON.stringify(data);
@@ -36,18 +32,11 @@ app.factory('ws', function($rootScope){
         }
     };
     
-///////////////////////////
+// handler for WebSocket onmessage 
     function handler() {
         var respMsg = JSON.parse(event.data);
-//        socket.respMsg = respMsg;
-//        console.log('respMsg is updated: ' + socket.respMsg.$type);
+//received data is being broadcasted from $rootScope to every child $scope
         $rootScope.$broadcast('response', respMsg);
-        
     };
-    
-    
     return socket;
-    
-    
-    
 });
