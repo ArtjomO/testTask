@@ -2,8 +2,12 @@ section {
     margin-top: 100px;
 }
 
+.admin-panel {
+    outline: 1px solid blue;
+}
+
 .table-section {
-    max-width: 1302px;
+/*    max-width: 1302px;*/
     max-height: 519px;
     margin-left: auto;
     margin-right: auto;
@@ -16,8 +20,10 @@ section {
     height: 90px;
     width: 200px;
     background-color: rgba(0, 132, 61, 0.56);
-    border: 2px solid rgba(36, 106, 57, 0.66);
-    border-radius: 9px;
+    border: 6px solid rgba(36, 106, 57, 0.66);
+    border-radius: 7px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     margin: 5px;
     text-align: center;
     float: left;

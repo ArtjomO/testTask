@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/head.css">
@@ -13,20 +14,22 @@
     <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
     <script type="text/javascript" src="Directives/lobby-dir.js"></script>
     <script type="text/javascript" src="Services/connection.js"></script>        
+    <script type="text/javascript" src="Directives/admin-dir.js"></script>
+    <script type="text/javascript" src="Controllers/adminCtrl.js"></script>
 </head>
 <body ng-app="lobby">
    
-    <header ng-controller="loginCtrl">
+    <header ng-controller="loginCtrl" class="clearfix">
         <login-dir></login-dir>
     </header>
     
     <section ng-controller="lobbyCtrl">
-        <div class="admin">
-            <button ng-click="createTable('add_table', 'table', 4)">Create T</button>
-            <button ng-click="subscribe('subscribe_tables')">Subscribe</button>
-            <button ng-click="subscribe('unsubscribe_tables')">Unsubscribe</button>
+        <div class="container-fluid">
+            <div class="row">
+<!--               <admin></admin>-->
+                <lobby-dir></lobby-dir>
+            </div>
         </div>
-        <lobby-dir></lobby-dir>
     </section>
     
 </body>
