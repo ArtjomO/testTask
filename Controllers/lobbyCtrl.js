@@ -38,16 +38,16 @@ app.controller('lobbyCtrl', function($scope, ws){
         };
     });
     
-    $scope.subscribe = function(type){
-        var sub = {$type: type};
-        ws.send(sub);
-
-        if (type == 'subscribe_tables') {
-            console.log('++Tables are subscribed..')
-        } else if (type == 'unsubscribe_tables') {
-            console.log('--Tables are unsubscribed..')
-        }
-    };
+//    $scope.subscribe = function(type){
+//        var sub = {$type: type};
+//        ws.send(sub);
+//
+//        if (type == 'subscribe_tables') {
+//            console.log('++Tables are subscribed..')
+//        } else if (type == 'unsubscribe_tables') {
+//            console.log('--Tables are unsubscribed..')
+//        }
+//    };
      
     $scope.createTable = function(type, name, participans) {
         console.log('Creating table')
