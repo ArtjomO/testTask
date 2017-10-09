@@ -12,24 +12,24 @@ app.controller('adminCtrl', function($scope, ws){
         }
     }
     
-    var NewTable = function(){
-        this.$type = $scope.table.$type
-        this.after_id = $scope.table.after_id
-        this.table = $scope.table.table
-    }
-    
     $scope.addTable = function(){
-        var table = new NewTable();
-        console.log('kek')
-        
+        var table = $scope.table;
         switch (table.after_id) {
             case '1':
-                
-                $scope.tableList.push(table.table)
+                $scope.tableList.push(angular.copy(table.table));
                 console.log($scope.$parent.tableList)
-                
                 break;
         } 
+        
+        $scope.table = {
+            $type: '',
+            after_id: '',
+            table: {
+                id: '',
+                name: '',
+                participants: ''
+            }
+        }
     };
 
     
