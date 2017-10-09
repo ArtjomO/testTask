@@ -7,18 +7,26 @@
 -->
 
     <div class="form-group">
+        <label for="">After ID</label>
+        <input type="text" class="form-control" ng-model="table.after_id">
+    </div>
+    <div class="form-group">
         <label for="">Table name</label>
-        <input type="text" class="form-control" ng-model="tableName">
+        <input type="text" class="form-control" ng-model="table.table.name">
     </div>
     <div class="form-group">
         <label for="">Table ID</label>
-        <input type="text" class="form-control" ng-model="id">
+        <input type="text" class="form-control" ng-model="table.table.id">
     </div>
+    
     <div class="form-group">
-        <label for="">After ID</label>
-        <input type="text" class="form-control" ng-model="afterId">
+        <label for="">Participants</label>
+        <input type="text" class="form-control" ng-model="table.table.participants">
     </div>
-    <button type="button" class="btn btn-primary btn-sm" ng-click="">Add</button>
+    <button type="button" class="btn btn-primary btn-sm" ng-click="addTable()">Add</button>
+    <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe('subscribe_tables')">Subscribe</button>
+    <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe('unsubscribe_tables')">Unsubscribe</button>
+    
 
 
 
