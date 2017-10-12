@@ -4,6 +4,7 @@ app.controller('lobbyCtrl', function($scope, ws){
     
     $scope.$on('response', function(event, data){
         var tables = $scope.tableList
+        console.log($scope.tableList)
         
         switch (data.$type){
             case 'table_list':

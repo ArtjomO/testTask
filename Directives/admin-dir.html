@@ -8,20 +8,20 @@
 
     <div class="form-group">
         <label for="">After ID</label>
-        <input type="text" class="form-control" ng-model="table.after_id">
+        <input type="text" class="form-control" ng-model="tableToAdd.after_id">
     </div>
     <div class="form-group">
         <label for="">Table name</label>
-        <input type="text" class="form-control" ng-model="table.table.name">
+        <input type="text" class="form-control" ng-model="tableToAdd.table.name">
     </div>
     <div class="form-group">
         <label for="">Table ID</label>
-        <input type="text" class="form-control" ng-model="table.table.id">
+        <input type="text" class="form-control" ng-model="tableToAdd.table.id">
     </div>
     
     <div class="form-group">
         <label for="">Participants</label>
-        <input type="text" class="form-control" ng-model="table.table.participants">
+        <input type="text" class="form-control" ng-model="tableToAdd.table.participants">
     </div>
     <button type="button" class="btn btn-primary btn-sm" ng-click="addTable()">Add</button>
     <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe('subscribe_tables')">Subscribe</button>
