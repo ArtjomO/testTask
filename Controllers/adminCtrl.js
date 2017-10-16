@@ -1,5 +1,7 @@
 app.controller('adminCtrl', function($scope, ws){
     
+    
+    
     $scope.isAdmin = 'user';
     
     $scope.tableToAdd = {
@@ -10,44 +12,26 @@ app.controller('adminCtrl', function($scope, ws){
             name: null,
             participants: null
         }
-    }
+    };
     
-    var tableToAdd = function(type){
-            var t = $scope.tableToAdd;
-            return {
-                $type: type,
-                after_id: JSON.parse(t.after_id),
-                table: {
-                    id: JSON.parse(t.table.id),
-                    name: t.table.name,
-                    participants: JSON.parse(t.table.participants)
-                }
-            };
-        };
-    
-     $scope.addTable = function(){
+    $scope.addTable = function(){
         
-        console.log(tableToAdd('add_table'));
-         
+        console.log($scope.tableToAdd);
+        var afterId = $scope.tableToAdd.after_id;
+        var tableToAdd = angular.copy($scope.tableToAdd);
+        var tableList = $scope.$parent.tableList
          //ws.send(tableToAdd('add_table'))
-        
-        $scope.$parent.tableList.forEach(function(table){console.log(table.id)})
-        switch (tableToAdd().after_id) {
+        switch (afterId) {
             case -1:
-                $scope.tableList.unshift(angular.copy(tableToAdd().table));
-                console.log($scope.$parent.tableList)
+                tableList.unshift(tableToAdd.table)
                 break;
-            case -2:
-                $scope.tableList.push(angular.copy(tableToAdd().table));
+            case null:
+                tableList.push(tableToAdd.table);
                 break;
             default:
-                $scope.$parent.tableList.forEach(function(table){
-                    if (table.id === tableToAdd().after_id) {
-                        var index = $scope.$parent.tableList.indexOf(table) + 1;
-                        console.log(index)
-                        $scope.$parent.tableList.splice(index,0,angular.copy(tableToAdd().table))
-                    }
-            });       
+                console.log(tableList)
+                var index = tableList.findIndex(function(t){return t.id === afterId}) +1;
+                tableList.splice(index,0,tableToAdd.table)      
         }   
     };
 
@@ -60,11 +44,11 @@ app.controller('adminCtrl', function($scope, ws){
     
     $scope.removeTable = function() {
         
-        $scope.$parent.tableList.forEach(function(table){
-            if (tableToAdd().table.id === table.id){
+        tableList.forEach(function(table){
+            if ($scope.tableToAdd.table.id === table.id){
                 console.log(table)
-                var index = $scope.$parent.tableList.indexOf(table);
-                $scope.$parent.tableList.splice(index,1)
+                var index = tableList.indexOf(table);
+                tableList.splice(index,1)
             }
         })
         ws.send({"$type": "remove_table", "id":$scope.tableToAdd.table.id})
