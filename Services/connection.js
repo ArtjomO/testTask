@@ -1,5 +1,5 @@
 //WebSocket service which opens connection, can send messages from any $scope and handles responses
-app.factory('ws', function($rootScope){
+app.factory('ws', function($rootScope, tm){
     var stack = [];
     var onmessageDefer;
     var socket = {
@@ -36,7 +36,10 @@ app.factory('ws', function($rootScope){
     function handler() {
         var respMsg = JSON.parse(event.data);
 //received data is being broadcasted from $rootScope to every child $scope
+        tm.setData(respMsg)
+        tm.con(respMsg)
         $rootScope.$broadcast('response', respMsg);
+        
     };
     return socket;
 });

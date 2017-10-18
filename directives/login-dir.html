@@ -1,4 +1,4 @@
-<div class="login form-inline form-group-sm pull-right" ng-if="isAdmin === 'user'">
+<div class="login form-inline form-group-sm pull-right" ng-if="isAdmin === 'user' || undefined || null">
     <div class="form-group">
         <label for="login">Login</label>
         <input type="text" class="form-control" ng-model="credentials.username">
@@ -10,5 +10,10 @@
     <button type="button" class="btn btn-primary btn-sm" ng-click="aouthor()">login</button>
 </div>
 
-
-<div ng-if="isAdmin === 'admin'" class="alert alert-success text-right" role="alert" >Logged in as <strong class="text-capitalize">{{isAdmin}}</strong></div>
+<div ng-if="isAdmin === 'admin'">
+    <div  class="alert alert-success text-right" role="alert" >
+       <button class="btn btn-default pull-left" ng-click="logout()">logout</button>
+        Logged in as <strong class="text-capitalize">{{isAdmin}}</strong>
+    </div>
+    
+</div>

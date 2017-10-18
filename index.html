@@ -16,6 +16,7 @@
     <script type="text/javascript" src="Services/connection.js"></script>        
     <script type="text/javascript" src="Directives/admin-dir.js"></script>
     <script type="text/javascript" src="Controllers/adminCtrl.js"></script>
+    <script type="text/javascript" src="Services/tableManager.js"></script>
 </head>
 <body ng-app="lobby">
    
@@ -24,7 +25,7 @@
     </header>
     
     <section ng-controller="lobbyCtrl">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                <admin ng-controller="adminCtrl"></admin>
                 <lobby-dir></lobby-dir>

@@ -1,8 +1,9 @@
-app.controller('adminCtrl', function($scope, ws){
+app.controller('adminCtrl', function($scope, ws, tm, $rootScope){
     
     
     
     $scope.isAdmin = 'user';
+//    $scope.isAdmin = tm.getIsAdmin();
     
     $scope.tableToAdd = {
         $type: null,
@@ -14,24 +15,24 @@ app.controller('adminCtrl', function($scope, ws){
         }
     };
     
-    $scope.addTable = function(){
+    $scope.addTable = function(t){
         
-        console.log($scope.tableToAdd);
-        var afterId = $scope.tableToAdd.after_id;
-        var tableToAdd = angular.copy($scope.tableToAdd);
+        console.log(t);
+        var afterId = t.after_id;
+        var tableToAdd = angular.copy(t);
         var tableList = $scope.$parent.tableList
          //ws.send(tableToAdd('add_table'))
         switch (afterId) {
             case -1:
-                tableList.unshift(tableToAdd.table)
+                tm.tableList.unshift(tableToAdd.table)
                 break;
             case null:
-                tableList.push(tableToAdd.table);
+                tm.tableList.push(tableToAdd.table);
                 break;
             default:
                 console.log(tableList)
                 var index = tableList.findIndex(function(t){return t.id === afterId}) +1;
-                tableList.splice(index,0,tableToAdd.table)      
+                tm.tableList.splice(index,0,tableToAdd.table)      
         }   
     };
 
@@ -56,11 +57,7 @@ app.controller('adminCtrl', function($scope, ws){
     
     
     $scope.$on('response', function(event, data){
-        switch (data.$type) {
-            case 'login_successful':
-                console.log('is admin change admin ctrl');
-                $scope.$apply(function(){$scope.isAdmin = 'admin'});
-        }
+        $scope.$apply($scope.isAdmin = tm.isAdmin)
     });
     
     $scope.subscribe = function(type){
