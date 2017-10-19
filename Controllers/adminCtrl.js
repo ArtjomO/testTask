@@ -1,9 +1,6 @@
-app.controller('adminCtrl', function($scope, ws, tm, $rootScope){
-    
-    
+app.controller('adminCtrl', function($scope, ws, tm, $rootScope, $timeout){
     
     $scope.isAdmin = 'user';
-//    $scope.isAdmin = tm.getIsAdmin();
     
     $scope.tableToAdd = {
         $type: null,
@@ -15,43 +12,15 @@ app.controller('adminCtrl', function($scope, ws, tm, $rootScope){
         }
     };
     
-    $scope.addTable = function(t){
-        
-        console.log(t);
-        var afterId = t.after_id;
-        var tableToAdd = angular.copy(t);
-        var tableList = $scope.$parent.tableList
-         //ws.send(tableToAdd('add_table'))
-        switch (afterId) {
-            case -1:
-                tm.tableList.unshift(tableToAdd.table)
-                break;
-            case null:
-                tm.tableList.push(tableToAdd.table);
-                break;
-            default:
-                console.log(tableList)
-                var index = tableList.findIndex(function(t){return t.id === afterId}) +1;
-                tm.tableList.splice(index,0,tableToAdd.table)      
-        }   
+    $scope.addTable = function(){
+        //ws.send($scope.tableToAdd.table);
+        tm.add_to_table_list($scope.tableToAdd);
     };
-
     
-    
-    $scope.tableUpdate = function() {
-        
-    };
     
     
     $scope.removeTable = function() {
         
-        tableList.forEach(function(table){
-            if ($scope.tableToAdd.table.id === table.id){
-                console.log(table)
-                var index = tableList.indexOf(table);
-                tableList.splice(index,1)
-            }
-        })
         ws.send({"$type": "remove_table", "id":$scope.tableToAdd.table.id})
     };
     

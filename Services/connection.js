@@ -37,6 +37,7 @@ app.factory('ws', function($rootScope, tm){
         var respMsg = JSON.parse(event.data);
 //received data is being broadcasted from $rootScope to every child $scope
         tm.setData(respMsg)
+//        tm.data = respMsg;
         tm.con(respMsg)
         $rootScope.$broadcast('response', respMsg);
         
