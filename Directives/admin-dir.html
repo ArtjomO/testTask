@@ -1,10 +1,5 @@
 
 <div class="admin-panel col-lg-3" ng-if="isAdmin === 'admin'">
-<!--
-    <button ng-click="createTable('add_table', 'table', 4)">Create T</button>
-    <button ng-click="subscribe('subscribe_tables')">Subscribe</button>
-    <button ng-click="subscribe('unsubscribe_tables')">Unsubscribe</button>
--->
 
     <div class="form-group">
         <label for="">After ID</label>
@@ -24,8 +19,7 @@
         <input type="number" class="form-control" ng-model="tableToAdd.table.participants">
     </div>
     <button type="button" class="btn btn-primary btn-sm" ng-click="addTable()">Add</button>
-    <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe('subscribe_tables')">Subscribe</button>
-    <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe('unsubscribe_tables')">Unsubscribe</button>
     <button type="button" class="btn btn-primary btn-sm" ng-click="removeTable()">Delete</button>
+    <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe()">{{subscribeBtn}} </button>
     
 </div>

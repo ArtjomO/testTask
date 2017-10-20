@@ -3,7 +3,7 @@ app.controller('adminCtrl', function($scope, ws, tm, $rootScope, $timeout){
     $scope.isAdmin = 'user';
     
     $scope.tableToAdd = {
-        $type: null,
+        $type: 'add_table',
         after_id: null,
         table: {
             id: null,
@@ -13,30 +13,27 @@ app.controller('adminCtrl', function($scope, ws, tm, $rootScope, $timeout){
     };
     
     $scope.addTable = function(){
-        //ws.send($scope.tableToAdd.table);
-        tm.add_to_table_list($scope.tableToAdd);
+        ws.send($scope.tableToAdd);
     };
     
-    
-    
     $scope.removeTable = function() {
-        
         ws.send({"$type": "remove_table", "id":$scope.tableToAdd.table.id})
     };
     
     
+    
+    $scope.subscribeBtn = 'Subscribe';
+    $scope.subscribe = function(){
+        if ($scope.subscribeBtn == 'Subscribe') {
+            $scope.subscribeBtn = 'Unsubscribe';
+            ws.send({$type: 'subscribe_tables'});   
+        } else if ($scope.subscribeBtn == 'Unsubscribe'){
+            $scope.subscribeBtn = 'Subscribe';
+            ws.send({$type: 'unsubscribe_tables'});
+        }
+    };
+    
     $scope.$on('response', function(event, data){
         $scope.$apply($scope.isAdmin = tm.isAdmin)
     });
-    
-    $scope.subscribe = function(type){
-        var sub = {$type: type};
-        ws.send(sub);
-         
-        if (type == 'subscribe_tables') {
-            console.log('++Tables are subscribed..')
-        } else if (type == 'unsubscribe_tables') {
-            console.log('--Tables are unsubscribed..')
-        }
-    };
 });

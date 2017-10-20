@@ -7,6 +7,7 @@ section {
 }
 
 .table-section {
+    min-height: 98px;
     max-width: 1302px;
     max-height: 503px;
 /*
