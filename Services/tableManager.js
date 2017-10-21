@@ -17,6 +17,8 @@ app.factory('tm', function(){
                 case 'login_successful':
                     this.isAdmin = data.user_type;
                     this.maxList = 9999;
+                    
+                    console.log('logged in as: ' + this.isAdmin +'\n' + 'ma')
                     break;
                 case 'login_failed':
                     alert('Inccorrect Login or Password');
@@ -31,7 +33,7 @@ app.factory('tm', function(){
                     this.remove_table_from_list(data);
                     break;    
                 case 'removal_failed':
-                    this.remove_table_from_list(data);
+                    alert(data.$type + ' ID: ' + data.id)
                     break;    
                 case 'table_added':
                     var index = this.tableList.findIndex(function(table){return table.id === data.after_id}) +1;

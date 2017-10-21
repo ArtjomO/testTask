@@ -1,0 +1,31 @@
+<div>
+    <div class="admin-panel col-lg-3" ng-if="isAdmin === 'admin'">
+        <div class="form-group">
+            <label for="">After ID</label>
+            <input type="number" class="form-control" ng-model="tableToAdd.after_id">
+        </div>
+        <div class="form-group">
+            <label for="">Table name</label>
+            <input type="text" class="form-control" ng-model="tableToAdd.table.name">
+        </div>
+        <div class="form-group">
+            <label for="">Table ID</label>
+            <input type="number" class="form-control" ng-model="tableToAdd.table.id">
+        </div>
+        <div class="form-group">
+            <label for="">Participants</label>
+            <input type="number" class="form-control" ng-model="tableToAdd.table.participants">
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="addTable()">Add</button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="removeTable()">Delete</button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe()">{{subscribeBtn}} </button>
+    </div>
+  
+    <div class="table-section col-lg-8 col-lg-offset-6 center-block">
+        <div class="table" ng-repeat="table in tableList track by table.id" ng-show="$index <= maxList">
+            <div class="t-name">{{table.name}}</div>
+            <div class="t-players">Players: {{table.participants}} / 12</div>
+            <span>{{table.id}}</span>
+        </div>
+    </div>
+</div>

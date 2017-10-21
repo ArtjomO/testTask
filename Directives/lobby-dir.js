@@ -1,6 +1,6 @@
-app.directive('loginDir', function(){
-   return {
-       restrict: 'E',
-       templateUrl: '../directives/login-dir.html'
-   } 
+app.directive('lobbyDir', function(){
+    return {
+        restrict: 'E',
+        templateUrl: '../directives/lobby-dir.html'
+    };
 });

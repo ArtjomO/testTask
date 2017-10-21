@@ -1,8 +1,10 @@
 //var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
-(function(){ 
-app.controller('loginCtrl', function($scope, ws, tm){
+
+app.controller('loginCtrl', function($scope, ws, tm, $state){
     $scope.isAdmin = 'user';
- 
+    
+    $state.go('adminState')
+    
     $scope.credentials = {
         $type: 'login',
         username: 'user1234',
@@ -15,8 +17,14 @@ app.controller('loginCtrl', function($scope, ws, tm){
     };
     
     $scope.$on('response', function(event, data){
-        $scope.$apply($scope.isAdmin = tm.isAdmin)
+        $scope.$apply( function(){
+            
+            $scope.isAdmin = tm.isAdmin
+            
+        })
+        
+        
+
     });
     
 });  
-})();
