@@ -3,8 +3,6 @@
 app.controller('loginCtrl', function($scope, ws, tm, $state){
     $scope.isAdmin = 'user';
     
-    $state.go('adminState')
-    
     $scope.credentials = {
         $type: 'login',
         username: 'user1234',
@@ -20,6 +18,7 @@ app.controller('loginCtrl', function($scope, ws, tm, $state){
         $scope.$apply( function(){
             
             $scope.isAdmin = tm.isAdmin
+            if (tm.isAdmin == 'admin') {$state.go('adminState')}
             
         })
         

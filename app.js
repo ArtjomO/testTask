@@ -2,12 +2,16 @@ var app = angular.module('lobby', ['ui.router'])
 
 
 app.config(function($stateProvider) {
-   $stateProvider.adminState = {
-        name: 'admin',
+   $stateProvider.state('adminState', {
         url: '/admin',
         templateUrl: 'views/adminView.html',
         controller: 'adminViewCtrl'
-      }
+      });
+    $stateProvider.state('def', {
+        url: null,
+        
+        
+    });
 
   
 //  $stateProvider.state(adminState);

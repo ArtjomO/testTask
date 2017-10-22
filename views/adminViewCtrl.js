@@ -1,6 +1,6 @@
 app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($scope, ws, tm, $rootScope){
-    
-    $scope.isAdmin = 'admin';
+    $scope.isAdmin = tm.isAdmin;
+
     
     $scope.maxList = tm.maxList;
     
@@ -18,12 +18,13 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
         }
     };
     
-    
-    
-    
     $scope.addTable = function(){
         ws.send($scope.tableToAdd);
     };
+    
+    $scope.updateTable = function(){
+        ws.send({"$type": 'update_table', "table": $scope.tableToAdd.table})
+    }
     
     $scope.removeTable = function() {
         ws.send({"$type": "remove_table", "id":$scope.tableToAdd.table.id})
@@ -40,10 +41,11 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
     };
     
     $scope.$on('response', function(event, data){
+        
         $scope.$apply(function(){
-            $scope.isAdmin = tm.isAdmin
             $scope.tableList = tm.tableList
             $scope.maxList = tm.maxList
         });
+        
     });
 }]);

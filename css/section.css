@@ -1,20 +1,20 @@
 section {
     margin-top: 100px;
+    outline: 1px solid black;
 }
 
 .admin-panel {
-    outline: 1px solid blue;
+/*    outline: 1px solid blue;*/
 }
 
 .table-section {
-    min-height: 98px;
-    max-width: 1302px;
-    max-height: 503px;
+/*    max-width: 1371px;*/
+    height: 503px;
 /*
     margin-left: auto;
     margin-right: auto;
-*/
     background-color: white;
+*/
     border: 1px solid black;
     border-radius: 9px;
     overflow-y: auto;
@@ -22,7 +22,7 @@ section {
 
 .table {
     height: 90px;
-    width: 200px;
+    width: 202px;
     background-color: rgba(0, 132, 61, 0.56);
     border: 6px solid rgba(36, 106, 57, 0.66);
     border-radius: 7px;

@@ -7,6 +7,8 @@ app.factory('tm', function(){
         
         maxList: 2,
         
+        isAdmin: null,
+        
         remove_table_from_list: function(data){
             var index = this.tableList.findIndex(function(table){return table.id === data.id});
             this.tableList.splice(index,1);
@@ -39,6 +41,12 @@ app.factory('tm', function(){
                     var index = this.tableList.findIndex(function(table){return table.id === data.after_id}) +1;
                     this.tableList.splice(index,0,data.table);
                     break;
+                case 'table_updated':
+                    alert('table updated')
+                    var index = this.tableList.findIndex(function(table){return table.id === data.table.id});
+                    console.log(this.tableList[index])
+                    this.tableList[index].participants = data.table.participants
+                    this.tableList[index].name = data.table.name;
                 
             };
         }

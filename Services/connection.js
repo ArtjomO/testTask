@@ -21,6 +21,7 @@ app.factory('ws', function($rootScope, tm){
         }
     };
     
+    
     socket.ws.onopen = function(event) {
         for (i in stack) {
             socket.ws.send(stack[i]);
