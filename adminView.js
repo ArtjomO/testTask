@@ -1,12 +1,8 @@
-app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($scope, ws, tm, $rootScope){
-    $scope.isAdmin = tm.isAdmin;
-
-    
+app.controller('adminViewCtrl', function($scope, $rootScope, ws, tm, $location){
     $scope.maxList = tm.maxList;
+    $scope.isAdmin = 'user';
     
     $scope.tableList = tm.tableList;
-    
-    $scope.subscribeBtn = 'Subscribe';
     
     $scope.tableToAdd = {
         $type: 'add_table',
@@ -18,38 +14,34 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
         }
     };
     
-    $scope.delInput = function (){
-        if ($scope.search==null)  {delete $scope.search}
-    }
-    
     $scope.addTable = function(){
         ws.send($scope.tableToAdd);
     };
-    
-    $scope.updateTable = function(){
-        ws.send({"$type": 'update_table', "table": $scope.tableToAdd.table})
-    }
     
     $scope.removeTable = function() {
         ws.send({"$type": "remove_table", "id":$scope.tableToAdd.table.id})
     };
     
+    
+    
+    $scope.subscribeBtn = 'Subscribe';
     $scope.subscribe = function(){
         if ($scope.subscribeBtn == 'Subscribe') {
             $scope.subscribeBtn = 'Unsubscribe';
             ws.send({$type: 'subscribe_tables'});   
-        } else {
+        } else if ($scope.subscribeBtn == 'Unsubscribe'){
             $scope.subscribeBtn = 'Subscribe';
             ws.send({$type: 'unsubscribe_tables'});
         }
     };
     
+    
+    
     $scope.$on('response', function(event, data){
-        
         $scope.$apply(function(){
-            $scope.tableList = tm.tableList
-            $scope.maxList = tm.maxList
-        });
-        
+            $scope.tableList = tm.tableList;
+            $scope.maxList = tm.maxList;
+            $scope.isAdmin = tm.isAdmin;
+        })
     });
-}]);
+})

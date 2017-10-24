@@ -1,45 +1,49 @@
-   <a ui-sref="def" ui-sref-active="active">Admin</a>
-    <div class="form-group col-lg-8">
-        <input type="text" placeholder="Search table" class="form-control" ng-model="tableList">
-    </div>
-
-
-       
-        <div class="panel panel-danger admin-panel col-sm-3" ng-if="isAdmin === 'admin'"> 
-            <div class="panel-heading">Admin panel</div>
-
-            <div class="panel-body">
-                <div class="form-group">
-                    <label for="">After ID</label>
-                    <input type="number" class="form-control" ng-model="tableToAdd.after_id">
-                </div>
-                <div class="form-group">
-                    <label for="">Table name</label>
-                    <input type="text" class="form-control" ng-model="tableToAdd.table.name">
-                </div>
-                <div class="form-group">
-                    <label for="">Table ID</label>
-                    <input type="number" class="form-control" ng-model="tableToAdd.table.id">
-                </div>
-                <div class="form-group">
-                    <label for="">Participants</label>
-                    <input type="number" class="form-control" ng-model="tableToAdd.table.participants">
-                </div>
-
-                <button type="button" class="btn btn-secondary btn-xs" ng-class="{'btn-primary': tableToAdd.table.name && tableToAdd.after_id && tableToAdd.table.participants }" ng-click="addTable()">Add</button>    
-                <button type="button" class="btn btn-secondary btn-xs" ng-class="{'btn-primary': tableToAdd.table.id && tableToAdd.table.name && tableToAdd.table.participants}" ng-click="updateTable()">Update</button>
-                <button type="button" class="btn btn-secondary btn-xs" ng-class="{'btn-primary': tableToAdd.table.id}" ng-click="removeTable()">Delete</button>
-                <button type="button" class="btn btn-primary btn-xs" ng-click="subscribe()">{{subscribeBtn}}</button>
-            </div>
-
+<div class="container-fluid">
+    <div class="clearfix">
+        <div class="form-group col-md-2 col-md-offset-3">
+            <input type="number" placeholder="Search table by ID" class="form-control" ng-change="delInput()" ng-model="search">
         </div>
+    </div>    
+    
+    <div class="clearfix">
+        <div class="col-md-3">
+            <div class="panel panel-danger admin-panel"> 
+                <div class="panel-heading">Admin panel</div>
 
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="">After ID</label>
+                        <input type="number" class="form-control" ng-model="tableToAdd.after_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Table name</label>
+                        <input type="text" class="form-control" ng-model="tableToAdd.table.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Table ID</label>
+                        <input type="number" class="form-control" ng-model="tableToAdd.table.id">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Participants</label>
+                        <input type="number" class="form-control" ng-model="tableToAdd.table.participants">
+                    </div>
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-sm" ng-class="{'btn-primary': tableToAdd.table.name && tableToAdd.after_id && tableToAdd.table.participants }" ng-click="addTable()">Add</button>    
+                    <button type="button" class="btn btn-secondary btn-sm" ng-class="{'btn-primary': tableToAdd.table.id && tableToAdd.table.name && tableToAdd.table.participants}" ng-click="updateTable()">Update</button>
+                    <button type="button" class="btn btn-secondary btn-sm" ng-class="{'btn-primary': tableToAdd.table.id}" ng-click="removeTable()">Delete</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe()">{{subscribeBtn}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
 
-        <div class="table-section col-sm-8">
-            <div class="table" ng-repeat="table in tableList track by table.id | filter:table.id" ng-show="$index <= maxList">
+        <div class="table-section col-md-8" >
+            <div class="table" ng-repeat="table in tableList | filter: {id: search} track by table.id" ng-show="$index <= maxList">
                 <div class="t-name">{{table.name}}</div>
                 <div class="t-players">Players: {{table.participants}} / 12</div>
                 <span>{{table.id}}</span>
             </div>
         </div>
- 
+    </div>
+ </div>
