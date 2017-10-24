@@ -1,11 +1,5 @@
-<div class="container-fluid">
-    <div class="clearfix">
-        <div class="form-group col-md-2 col-md-offset-3">
-            <input type="number" placeholder="Search table by ID" class="form-control" ng-change="delInput()" ng-model="search">
-        </div>
-    </div>    
+
     
-    <div class="clearfix">
         <div class="col-md-3">
             <div class="panel panel-danger admin-panel"> 
                 <div class="panel-heading">Admin panel</div>
@@ -36,14 +30,4 @@
                 </div>
             </div>
         </div>
-    
 
-        <div class="table-section col-md-8" >
-            <div class="table" ng-repeat="table in tableList | filter: {id: search} track by table.id" ng-show="$index <= maxList">
-                <div class="t-name">{{table.name}}</div>
-                <div class="t-players">Players: {{table.participants}} / 12</div>
-                <span>{{table.id}}</span>
-            </div>
-        </div>
-    </div>
- </div>

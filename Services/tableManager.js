@@ -1,6 +1,5 @@
 app.factory('tm', function(){ 
     return {
-        
         con: function(data){console.log(data)},
         
         tableList: [],

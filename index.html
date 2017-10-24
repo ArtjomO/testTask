@@ -21,8 +21,8 @@
     <script type="text/javascript" src="Services/tableManager.js"></script>
 <!--    View works -->
     <script type="text/javascript" src="views/adminViewCtrl.js"></script>
-<!--    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>-->
-<!--    <script type="text/javascript" src="Directives/lobby-dir.js"></script>-->
+    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
+    <script type="text/javascript" src="Directives/lobby-dir.js"></script>
 <!--    <script type="text/javascript" src="Directives/admin-dir.js"></script>-->
 <!--    <script type="text/javascript" src="Controllers/adminCtrl.js"></script>-->
     
@@ -47,12 +47,14 @@
         </div>
     </section>
 -->
-       
+    <div class="container-fluid">   
     <section class="clearfix">
-           
-            <ui-view></ui-view>
-        
+       <ui-view></ui-view>
+       <div ng-controller="lobbyCtrl">
+           <lobby-dir></lobby-dir>
+        </div>
     </section>
+    </div>
 
 </body>
 </html>
