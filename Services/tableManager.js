@@ -1,4 +1,5 @@
-app.factory('tm', function(){ 
+app.factory('tm', function($rootScope){ 
+    
     return {
         con: function(data){console.log(data)},
         
@@ -18,8 +19,6 @@ app.factory('tm', function(){
                 case 'login_successful':
                     this.isAdmin = data.user_type;
                     this.maxList = 9999;
-                    
-                    console.log('logged in as: ' + this.isAdmin +'\n' + 'ma')
                     break;
                 case 'login_failed':
                     alert('Inccorrect Login or Password');
@@ -46,7 +45,10 @@ app.factory('tm', function(){
                     console.log(this.tableList[index])
                     this.tableList[index].participants = data.table.participants
                     this.tableList[index].name = data.table.name;
-                
+                    break;
+                case 'not_authorized':
+                    alert('Not aouthorized, please log in..');
+                    break;
             };
         }
     }

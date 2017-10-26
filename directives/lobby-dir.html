@@ -1,10 +1,11 @@
-<div class="clearfix">
-        <div class="form-group col-md-2" ng-show="isAdmin == 'admin'">
-            <input type="number" placeholder="Search table by ID" class="form-control" ng-change="delInput()" ng-model="search">
-        </div>
+<div class="clearfix" ng-controller="lobbyCtrl">
+    <div class="form-group col-md-2" ng-show="isAdmin == 'admin'">
+        <input type="number" placeholder="Search table by ID" class="form-control" ng-change="delInput()" ng-model="search">
+    </div>
 
 
     <div class="table-section col-md-8" >
+            <div ng-show="tableListEmpty()">Table list is empty, please subscribe to display the list..</div>
             <div class="table" ng-repeat="table in tableList | filter: {id: search} track by table.id" ng-show="$index <= maxList">
             <div class="t-name">{{table.name}}</div>
             <div class="t-players">Players: {{table.participants}} / 12</div>

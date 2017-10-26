@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <title>Document</title>
     
-    
+<!--    CSS Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/head.css">
     <link rel="stylesheet" href="css/section.css">
-    
+<!--    Angular 1.* -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
-    <script src="https://unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+<!--    Angular ui-router -->
+<!--    <script src="https://unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    
+
     
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="Controllers/loginCtrl.js"></script>
-    <script type="text/javascript" src="Directives/login-dir.js"></script>
+    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
+<!--    Services -->
     <script type="text/javascript" src="Services/connection.js"></script>        
     <script type="text/javascript" src="Services/tableManager.js"></script>
 <!--    View works -->
-    <script type="text/javascript" src="views/adminViewCtrl.js"></script>
-    <script type="text/javascript" src="Controllers/lobbyCtrl.js"></script>
-    <script type="text/javascript" src="Directives/lobby-dir.js"></script>
-<!--    <script type="text/javascript" src="Directives/admin-dir.js"></script>-->
-<!--    <script type="text/javascript" src="Controllers/adminCtrl.js"></script>-->
+    <script type="text/javascript" src="Controllers/adminViewCtrl.js"></script>
     
 
 </head>
@@ -34,26 +34,15 @@
         <login-dir></login-dir>
     </header>
     
-<!--
-    <section ng-controller="lobbyCtrl">
-        <div class="container">
-            <div class="row">
-                
-                <input type="search" class="form-control" placeholder="Text input">
-                
-                <admin ng-controller="adminCtrl"></admin>
-                <lobby-dir></lobby-dir>
-            </div>
-        </div>
-    </section>
--->
+
     <div class="container-fluid">   
-    <section class="clearfix">
-       <ui-view></ui-view>
-       <div ng-controller="lobbyCtrl">
-           <lobby-dir></lobby-dir>
+        <div class="clearfix">
+          
+           <ui-view>
+               <lobby-dir></lobby-dir>
+           </ui-view>
+           
         </div>
-    </section>
     </div>
 
 </body>
