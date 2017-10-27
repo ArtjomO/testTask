@@ -10,7 +10,8 @@ section {
 }
 
 .admin-panel {
-/*    outline: 1px solid blue;*/
+    margin-top: 50px;
+    min-width: 300px
 }
 
 .table-section {

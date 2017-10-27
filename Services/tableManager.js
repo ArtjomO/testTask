@@ -1,11 +1,8 @@
 app.factory('tm', function($rootScope){ 
     
     return {
-        con: function(data){console.log(data)},
         
         tableList: [],
-        
-        maxList: 2,
         
         isAdmin: null,
         
@@ -23,7 +20,6 @@ app.factory('tm', function($rootScope){
                 case 'login_failed':
                     alert('Inccorrect Login or Password');
                     this.isAdmin = 'user';
-                    this.maxList = 2;
                     break;
                 case 'table_list':
                     console.log(this)

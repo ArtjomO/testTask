@@ -1,5 +1,5 @@
 <div class="clearfix" ng-controller="lobbyCtrl">
-    <div class="form-group col-md-2" ng-show="isAdmin == 'admin'">
+    <div class="form-group col-md-2" ng-show="displaySearch">
         <input type="number" placeholder="Search table by ID" class="form-control" ng-change="delInput()" ng-model="search">
     </div>
 

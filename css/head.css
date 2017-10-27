@@ -3,7 +3,10 @@
 }
 
 .alert {
-    margin: 0;
     height: 44px;
     padding-top: 12px;
+}
+
+.breadcrumb {
+    margin-bottom: 0px;
 }

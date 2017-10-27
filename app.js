@@ -34,6 +34,7 @@ app.run(['$rootScope', 'tm', function($rootScope, tm){
     $rootScope.$on('$stateChangeStart', function(event, toState){
             if (toState.name === 'usrState.adminState' && tm.isAdmin != 'admin') {
                 event.preventDefault()
-            }; 
+            }
+            
     });
 }]);

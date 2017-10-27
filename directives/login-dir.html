@@ -12,6 +12,12 @@
 
 
 <div ng-if="isAdmin === 'admin'">
+   
+    <ol class="breadcrumb">
+        <li  ng-click="$state.go('usrState')"><a href>User</a></li>
+        <li ng-click="$state.go('usrState.adminState')" ui-sref-active="active"><a href>Admin</a></li>
+    </ol>
+    
     <div  class="alert alert-success text-right" role="alert" >
         Logged in as <strong class="text-capitalize">{{isAdmin}}</strong>
     </div>
