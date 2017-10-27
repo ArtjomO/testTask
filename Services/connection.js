@@ -16,11 +16,10 @@ app.factory('ws', function($rootScope, tm){
             if (socket.ws.readyState == 1) {
                 socket.ws.onmessage = handler;
             } else {
-                onmessageDefer = callback;
+                onmessageDefer = handler;
             }
         }
     };
-    
     
     socket.ws.onopen = function(event) {
         for (i in stack) {
@@ -36,10 +35,9 @@ app.factory('ws', function($rootScope, tm){
 // handler for WebSocket onmessage 
     function handler() {
         var respMsg = JSON.parse(event.data);
+// response handler
+        tm.Handler(respMsg)
 //received data is being broadcasted from $rootScope to every child $scope
-        tm.setData(respMsg)
-//        tm.data = respMsg;
-        tm.con(respMsg)
         $rootScope.$broadcast('response', respMsg);
         
     };

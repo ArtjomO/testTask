@@ -1,6 +1,6 @@
 //var socket = new WebSocket('wss://js-assignment.evolutiongaming.com/ws_api', 'ws');
 
-app.controller('loginCtrl', function($scope, ws, tm, $state, $rootScope){
+app.controller('loginCtrl', ['$scope', 'ws', 'tm', '$state', '$rootScope', function($scope, ws, tm, $state, $rootScope){
     $scope.$state = $state;
     $scope.isAdmin = 'user';
     
@@ -21,4 +21,4 @@ app.controller('loginCtrl', function($scope, ws, tm, $state, $rootScope){
             if ( data.$type === 'login_successful') {$state.go('usrState.adminState')}
         });
     });
-});  
+}]);  

@@ -11,7 +11,7 @@ app.factory('tm', function($rootScope){
             this.tableList.splice(index,1);
         },
         
-        setData: function(data){
+        Handler: function(data){
             switch (data.$type) {
                 case 'login_successful':
                     this.isAdmin = data.user_type;
