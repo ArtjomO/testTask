@@ -1,4 +1,4 @@
-<div class="login form-inline form-group-sm pull-right" ng-if="isAdmin === 'user' || undefined || null">
+<div class="login form-inline form-group-sm pull-right" ng-if="isAdmin === null">
     <div class="form-group">
         <label for="login">Login</label>
         <input type="text" class="form-control" ng-model="credentials.username">
@@ -12,7 +12,6 @@
 
 
 <div ng-if="isAdmin === 'admin'">
-   
     <ol class="breadcrumb">
         <li  ng-click="$state.go('usrState')"><a href>User</a></li>
         <li ng-click="$state.go('usrState.adminState')" ui-sref-active="active"><a href>Admin</a></li>
@@ -21,5 +20,4 @@
     <div  class="alert alert-success text-right" role="alert" >
         Logged in as <strong class="text-capitalize">{{isAdmin}}</strong>
     </div>
-    
 </div>

@@ -33,8 +33,9 @@ app.factory('ws', function($rootScope, tm){
     };
     
 // handler for WebSocket onmessage 
-    function handler() {
+    function handler(event) {
         var respMsg = JSON.parse(event.data);
+        console.log(respMsg)
 // response handler
         tm.Handler(respMsg)
 //received data is being broadcasted from $rootScope to every child $scope

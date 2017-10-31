@@ -1,6 +1,7 @@
 var app = angular.module('lobby', ['ui.router'])
 
-// Configuring routs
+// Configuring routs. usrState will be default state and adminState is accessible
+// when user is logged in as admin
 app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider.state('usrState',{
         url: '/usr',
@@ -15,7 +16,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/usr')
 });
 
-//Creating directives
+//Creating two directives
 app.directive('lobbyDir', function(){
     return {
         restrict: 'E',
@@ -30,6 +31,7 @@ app.directive('loginDir', function(){
    } 
 });
 
+//preventing redirection to adminState if not logged as admin
 app.run(['$rootScope', 'tm', function($rootScope, tm){
     $rootScope.$on('$stateChangeStart', function(event, toState){
             if (toState.name === 'usrState.adminState' && tm.isAdmin != 'admin') {

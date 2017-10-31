@@ -1,16 +1,15 @@
 app.factory('tm', function($rootScope){ 
-    
     return {
-        
         tableList: [],
         
         isAdmin: null,
         
         remove_table_from_list: function(data){
+//findes the index of table in list and removes it
             var index = this.tableList.findIndex(function(table){return table.id === data.id});
             this.tableList.splice(index,1);
         },
-        
+// receives the response data and acts according to resp. $type
         Handler: function(data){
             switch (data.$type) {
                 case 'login_successful':
@@ -22,8 +21,7 @@ app.factory('tm', function($rootScope){
                     this.isAdmin = 'user';
                     break;
                 case 'table_list':
-                    console.log(this)
-                    this.tableList = data.tables; console.log('reassign')
+                    this.tableList = data.tables;
                     break;
                 case 'table_removed':
                     this.remove_table_from_list(data);
@@ -36,11 +34,10 @@ app.factory('tm', function($rootScope){
                     this.tableList.splice(index,0,data.table);
                     break;
                 case 'table_updated':
-                    alert('table updated')
                     var index = this.tableList.findIndex(function(table){return table.id === data.table.id});
-                    console.log(this.tableList[index])
                     this.tableList[index].participants = data.table.participants
                     this.tableList[index].name = data.table.name;
+                    alert('table: ' + data.table.id + ' is updated')
                     break;
                 case 'not_authorized':
                     alert('Not aouthorized, please log in..');

@@ -1,6 +1,8 @@
 app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($scope, ws, tm, $rootScope){
+// checking if user is logged in as admin
     $scope.isAdmin = tm.isAdmin;
-    
+
+//array of tables
     $scope.tableList = tm.tableList;
     
     $scope.subscribeBtn = 'Subscribe';
@@ -27,7 +29,7 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
     $scope.removeTable = function() {
         ws.send({"$type": "remove_table", "id":$scope.tableToAdd.table.id})
     };
-    
+
     $scope.subscribe = function(){
         if ($scope.subscribeBtn == 'Subscribe') {
             $scope.subscribeBtn = 'Unsubscribe';
@@ -38,6 +40,7 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
         }
     };
     
+// updating the view when srver response is received
     $scope.$on('response', function(event, data){
         
         $scope.$apply(function(){
