@@ -1,11 +1,15 @@
 app.factory('tm', function($rootScope){ 
     return {
+        subscribed: 'Subscribe',
+        
         tableList: [],
         
         isAdmin: null,
         
+        pongArr: [],
+        
         remove_table_from_list: function(data){
-//findes the index of table in list and removes it
+//finds the index of table in list and removes it
             var index = this.tableList.findIndex(function(table){return table.id === data.id});
             this.tableList.splice(index,1);
         },
@@ -42,6 +46,8 @@ app.factory('tm', function($rootScope){
                 case 'not_authorized':
                     alert('Not aouthorized, please log in..');
                     break;
+                case 'pong':
+                    this.pongArr.push(data)
             };
         }
     }

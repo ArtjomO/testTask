@@ -20,13 +20,11 @@
                 <input type="number" class="form-control" ng-model="tableToAdd.table.participants">
             </div>
             <div class="btn-group">
-            <button type="button" class="btn btn-secondary btn-sm" ng-class="{'btn-primary': tableToAdd.table.name && tableToAdd.after_id && tableToAdd.table.participants }" ng-click="addTable()">Add</button>    
-            <button type="button" class="btn btn-secondary btn-sm" ng-class="{'btn-primary': tableToAdd.table.id && tableToAdd.table.name && tableToAdd.table.participants}" ng-click="updateTable()">Update</button>
-            <button type="button" class="btn btn-secondary btn-sm" ng-class="{'btn-primary': tableToAdd.table.id}" ng-click="removeTable()">Delete</button>
+            <button type="button" class="btn btn-primary btn-sm" ng-disabled="!(tableToAdd.table.name && tableToAdd.after_id && tableToAdd.table.participants)" ng-click="addTable()">Add</button>    
+            <button type="button" class="btn btn-primary btn-sm" ng-disabled="!(tableToAdd.table.id && tableToAdd.table.name && tableToAdd.table.participants)" ng-click="updateTable()">Update</button>
+            <button type="button" class="btn btn-primary btn-sm" ng-disabled="!(tableToAdd.table.id)" ng-click="removeTable()">Delete</button>
             <button type="button" class="btn btn-primary btn-sm" ng-click="subscribe()">{{subscribeBtn}}</button>
             </div>
         </div>
     </div>
 </div>
-
-    

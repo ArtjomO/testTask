@@ -27,9 +27,34 @@ app.directive('lobbyDir', function(){
 app.directive('loginDir', function(){
    return {
        restrict: 'E',
-       templateUrl: '../directives/login-dir.html'
+       templateUrl: '../Directives/login-dir.html'
    } 
 });
+
+app.directive('pingPanel', ['tm', 'ws', function(tm, ws){
+    return {
+        restrict: 'E',
+        scope: {},
+        transclude: true,
+        templateUrl: 'Directives/ping-panel.html',
+        controller: ['$scope', '$rootScope', function($scope, $rootScope){
+            $scope.pongArr = tm.pongArr;
+            var ping = {
+                $type: 'ping',
+                seq: 1
+            }
+            $scope.pingBtn = function(){
+                ws.send(ping);
+                ping.seq = ping.seq += 1
+            };
+            ws.onmessage();
+            $rootScope.$on('response', function(event, data){
+                $scope.pingArr = tm.pingArr;
+                console.log(tm.pongArr)
+            });
+        }
+    ]};
+}]);
 
 //preventing redirection to adminState if not logged as admin
 app.run(['$rootScope', 'tm', function($rootScope, tm){

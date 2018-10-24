@@ -5,7 +5,7 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
 //array of tables
     $scope.tableList = tm.tableList;
     
-    $scope.subscribeBtn = 'Subscribe';
+    $scope.subscribeBtn = tm.subscribed;
     
     $scope.tableToAdd = {
         $type: 'add_table',
@@ -16,7 +16,6 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
             participants: null
         }
     };
-    
     
     $scope.addTable = function(){
         ws.send($scope.tableToAdd);
@@ -31,11 +30,13 @@ app.controller('adminViewCtrl', ['$scope', 'ws', 'tm', '$rootScope', function($s
     };
 
     $scope.subscribe = function(){
-        if ($scope.subscribeBtn == 'Subscribe') {
-            $scope.subscribeBtn = 'Unsubscribe';
-            ws.send({$type: 'subscribe_tables'});   
+        if (tm.subscribed == 'Subscribe') {
+            tm.subscribed = 'Unsubscribe';
+            $scope.subscribeBtn = tm.subscribed;
+            ws.send({$type: 'subscribe_tables'});
         } else {
-            $scope.subscribeBtn = 'Subscribe';
+            tm.subscribed = 'Subscribe';
+            $scope.subscribeBtn = tm.subscribed;
             ws.send({$type: 'unsubscribe_tables'});
         }
     };

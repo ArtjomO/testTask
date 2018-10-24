@@ -1,8 +1,9 @@
-<table class="table table-striped" style="width: 120px; border: solid 1px">
-    <tr>
-        <td> <button ng-click="pingBtn()">ping</button> </td>
-    </tr>    
-    <tr ng-repeat="pong in pongArr track by $index" >
-        <td> <span> {{ pong.$type }}: {{ pong.seq }} </span> </td>
-    </tr>
-</table>
+<div class="ping">
+    <div class="sticky">
+        <button class="btn btn-sm btn-default " ng-click="pingBtn()">ping</button>
+    </div>
+    
+    <div ng-repeat="pong in pongArr track by $index" ng-class="{grey: $index % 2 === 0}">
+        <span> {{ pong.$type }}: {{ pong.seq }} </span>
+    </div>
+</div>
